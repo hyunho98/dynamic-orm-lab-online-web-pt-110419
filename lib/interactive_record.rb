@@ -55,21 +55,8 @@ class InteractiveRecord
     DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE name = ?", [name])
   end
 
-  #def self.find_by(attribute)
-  #  sql = "SELECT * FROM #{self.table_name} WHERE #{attribute.keys.first} = #{attribute.values.first} LIMIT 1"
-  #  DB[:conn].execute(sql)
-  #end
   def self.find_by(attribute)
-    #executes the SQL to find a row by the attribute passed into the method
-    #WHERE name = ? OR grade = ? OR id = ?
-    #attribute is a hash, so it has a key/value pair
-    attribute_key = attribute.keys.join()
-    attrubute_value = attribute.values.first
-    sql =<<-SQL
-      SELECT * FROM #{self.table_name}
-      WHERE #{attribute_key} = "#{attrubute_value}"
-      LIMIT 1
-    SQL
+    sql = "SELECT * FROM #{self.table_name} WHERE #{attribute.keys.first} = #{attribute.values.first} LIMIT 1"
     row = DB[:conn].execute(sql)
   end
 
