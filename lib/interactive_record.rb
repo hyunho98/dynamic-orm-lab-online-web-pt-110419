@@ -56,8 +56,10 @@ class InteractiveRecord
   end
 
   def self.find_by(attribute)
-    sql = "SELECT * FROM #{self.table_name} WHERE #{attribute.keys.first} = #{attribute.values.first} LIMIT 1"
-    row = DB[:conn].execute(sql)
+    attribute_key = attribute.keys.first
+    attribute_value = attribute.values.first
+    sql = "SELECT * FROM #{self.table_name} WHERE #{attribute_key} = #{attribute_value}"
+    DB[:conn].execute(sql)
   end
 
 #  =begin
